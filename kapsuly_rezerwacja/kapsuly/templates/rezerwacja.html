@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport", content="width=device-width, initial_scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Zarezerwuj | Hotel Kapsułowy "Na Chmurce"</title>
+</head>
+
+<body>
+    <nav class="px-6 py-6 justify between items-center border-b, border-gray-200">
+        <a href="/" class="text-xl font-semibold">Hotel Kapsułowy "Na Chmurce"</a>
+    </nav>
+    <div class="px-6 py-6"
+         <h1>Moje rezerwacje:</h1>
+    </div>
+<table>
+    <tr>
+        <th>ID</th>
+
+        <th></th>
+    </tr>
+{% for rezerwacja in object_list %}
+    <!-- Display Objects -->
+    <tr>
+        <td>{{ rezerwacja.id }}</td>
+
+        <td>
+            <form action="{% url 'unreserve' rezerwacja.id %}">
+                 {% csrf_token %}
+                <button class="py-2 px-4 text-lg bg-red-500 hover:bg-red-900 rounded-xl text-white">UNRESERVE</button>
+            </form>
+        </td>
+        <td>
+            <form action="{% url 'details' rezerwacja.id %}">
+                 {% csrf_token %}
+                <button class="py-2 px-4 text-lg bg-gray-500 hover:bg-gray-900 rounded-xl text-white">DETAILS</button>
+            </form>
+        </td>
+
+    </tr>
+
+
+
+{% endfor %}
+</table>
+</body>
+</html>
+

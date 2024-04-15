@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport", content="width=device-width, initial_scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Zarezerwuj | Hotel Kapsułowy "Na Chmurce"</title>
+</head>
+
+<body>
+    <nav class="px-6 py-6 flex justify-between items-center border-b, border-gray-200">
+        <a href="/" class="text-xl font-semibold">Hotel Kapsułowy "Na Chmurce"</a>
+    </nav>
+    <div class="px-6 py-6"
+         <h1>Szczegóły o kapsule:</h1>
+    </div>
+
+<ul>
+    <li>ID: {{object.id}}</li>
+    <li>STANDARD: {{object.standard}}</li>
+    <li>POZIOM: {{object.poziom}}</li>
+    <li>PLEC: {{object.plec}}</li>
+</ul>
+
+{% if not object.is_reserved %}
+    <form action="{% url 'reserve' kapsula.id %}">
+        {% csrf_token %}
+        <button class="py-2 px-4 text-lg bg-green-500 hover:bg-green-900 rounded-xl text-white">RESERVE</button>
+    </form>
+    {% else %}
+        <h3 style="color:red">Kapsuła zarezerwowana</h3>
+
+</body>
+{% endif %}
+</html>
+
+

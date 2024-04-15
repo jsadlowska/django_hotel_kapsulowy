@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport", content="width=device-width, initial_scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Hotel Kapsułowy "Na Chmurce"</title>
+</head>
+
+<body>
+
+    <nav class="px-6 py-6 flex justify-between items-center border-b, border-gray-200">
+        <a href="/" class="text-xl font-semibold">Hotel Kapsułowy "Na Chmurce"</a>
+
+        <div class="space-x-6">
+            <a href="rezerwacje" class="px-6 py-3 text-lg font-semibold bg-blue-800 text-white rounded-xl hover:bg-blue-900">Moje rezerwacje</a>
+
+            <a href="#" class="px-6 py-3 text-lg font-semibold bg-blue-600 text-white rounded-xl hover:bg-blue-900">Zaloguj się</a>
+            <a href="signup" class="px-6 py-3 text-lg font-semibold bg-blue-400 text-white rounded-xl hover:bg-blue-900">Zarejestruj się</a>
+        </div>
+
+    </nav>
+
+
+<div class="w-1/2 my-6 mx-auto p-6 bg-blue-100 rounded-xl">
+    <form action="{% url 'index' %}" method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="fieldWrapper">
+                {{ field.errors }}
+                {{ field.label_tag }} {{ field }}
+            </div>
+        {% endfor %}
+        <button class="py-2 px-4 text-lg bg-blue-500 hover:bg-blue-900 rounded-xl text-white">SEARCH</button>
+   </form>
+</div>
+
+<div class="px-6 py-6"
+    <h1>Nasze kapsuły:</h1>
+</div>
+
+<table>
+        <tr>
+            <th>ID</th>
+            <th>STANDARD</th>
+            <th>POZIOM</th>
+            <th>PLEC</th>
+            <th></th>
+        </tr>
+    {% for kapsula in object_list %}
+    <!-- Display Objects -->
+        <tr>
+            <td>{{ kapsula.id }}</td>
+            <td>{{ kapsula.standard }}</td>
+            <td>{{ kapsula.poziom }}</td>
+            <td>{{ kapsula.plec }}</td>
+            <td>
+                <form action="{% url 'details' kapsula.id %}">
+                    {% csrf_token %}
+                    <button class="py-2 px-4 text-lg bg-gray-500 hover:bg-gray-900 rounded-xl text-white">DETAILS</button>
+                </form>
+            </td>
+        </tr>
+
+{% endfor %}
+</table>
+
+</body>
+</html>
