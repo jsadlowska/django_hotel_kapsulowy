@@ -27,9 +27,9 @@ class KapsulaListView(ListView):
         context = self.get_context_data()
         form = context["form"]
         if form.is_valid():
-            standard = self.request.POST["standard"]
-            poziom = self.request.POST["poziom"]
-            plec = self.request.POST["plec"]
+            standard = form.cleaned_data["standard"]
+            poziom = form.cleaned_data["poziom"]
+            plec = form.cleaned_data["plec"]
 
 
             if standard != "":
