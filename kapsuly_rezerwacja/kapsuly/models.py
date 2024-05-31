@@ -35,3 +35,5 @@ class Rezerwacja(models.Model):
     class Meta:
         verbose_name_plural = "Rezerwacje"
 
+class Meta:
+    unique_together = ('kapsula.id', 'rezerwacja.id')
