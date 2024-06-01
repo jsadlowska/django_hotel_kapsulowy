@@ -1,5 +1,6 @@
 from django.apps import AppConfig
 
-class KapsułyConfig(AppConfig):
+
+class UserConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'kapsuly'
+    name = 'user'

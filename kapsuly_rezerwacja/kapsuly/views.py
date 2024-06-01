@@ -4,7 +4,6 @@ from django.views.generic.detail import DetailView
 from kapsuly.models import Kapsula, Rezerwacja
 from django.db import transaction
 from kapsuly.forms import KapsulaForm
-from kapsuly_rezerwacja.forms import SignUpForm
 
 # Create your views here.
 
@@ -51,18 +50,6 @@ class KapsulaDetailView(DetailView):
 class RezerwacjaListView(ListView):
     model = Rezerwacja
     template_name = "rezerwacja.html"
-
-def signup(request):
-    if request.method == 'POST':
-        form = SignUpForm(request.POST)
-
-        if form.is_valid:
-            form.save()
-            return redirect('/login/')
-    else:
-        form = SignUpForm()
-
-    return render(request, "signup.html", {'form': form})
 
 @transaction.atomic
 def reserve(request, kapsula_id):

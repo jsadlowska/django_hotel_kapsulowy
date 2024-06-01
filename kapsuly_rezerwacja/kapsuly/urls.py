@@ -18,8 +18,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from kapsuly.views import KapsulaListView, reserve, KapsulaDetailView, unreserve, RezerwacjaListView, signup
-from kapsuly_rezerwacja.forms import LogInForm
+from kapsuly.views import KapsulaListView, reserve, KapsulaDetailView, unreserve, RezerwacjaListView
+from user import views as v_user
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,6 +28,5 @@ urlpatterns = [
     path('reserve/<int:kapsula_id>', reserve, name="reserve"),
     path('unreserve/<int:rezerwacja_id>', unreserve, name="unreserve"),
     path('<int:pk>', KapsulaDetailView.as_view(), name="details"),
-    path('signup', signup, name="signup"),
-    path('login', auth_views.LoginView.as_view(template_name= 'login.html',authentication_form=LogInForm), name="login")
+    path('signup', v_user.signup, name="signup")
 ]
