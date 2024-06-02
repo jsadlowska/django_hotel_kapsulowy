@@ -6,7 +6,7 @@ from django.contrib.auth import login, authenticate
 def signup(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
-        if form.is_valid:
+        if form.is_valid():
             user = form.save()
             user.refresh_from_db()
             user.save()
@@ -14,7 +14,7 @@ def signup(request):
             user = authenticate(username=user.username, password = raw_password)
             if user is not None:
                 login(request, user)
-                return redirect('')
+                return redirect('index')
             else:
                 print('Uwierzytelnienie nie powiodło się')
         else:
