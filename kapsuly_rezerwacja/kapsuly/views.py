@@ -21,7 +21,7 @@ class KapsulaListView(ListView):
         context["form"] = KapsulaForm(self.request.POST or None)
         return context
 
-    def post(self,*args, **kwargs):
+    def post(self, *args, **kwargs):
         self.object_list = self.get_queryset()
         context = self.get_context_data()
         form = context["form"]

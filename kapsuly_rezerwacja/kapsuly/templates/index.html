@@ -14,16 +14,21 @@
         <a href="/" class="text-xl font-semibold">Hotel Kapsułowy "Na Chmurce"</a>
 
         <div class="space-x-6">
-            <a href="rezerwacje" class="px-6 py-3 text-lg font-semibold bg-blue-800 text-white rounded-xl hover:bg-blue-900">Moje rezerwacje</a>
+            <a href="{% url 'rezerwacje' %}" class="px-6 py-3 text-lg font-semibold bg-blue-800 text-white rounded-xl hover:bg-blue-900">Moje rezerwacje</a>
 
-            {% if request.user.is_authencitated %}
+            {% if request.user.is_authenticated %}
 
-            <a href="logout" class="px-6 py-3 text-lg font-semibold bg-blue-400 text-white rounded-xl hover:bg-blue-900">Wyloguj się</a>
+            <div class="px-6 py-3 text-lg font-semibold bg-blue-400 text-white rounded-xl hover:bg-blue-900">
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <input type="submit" value="Wyloguj się">
+                </form>
+            </div>
 
-            {% else%}
+            {% else %}
 
-            <a href="login" class="px-6 py-3 text-lg font-semibold bg-blue-600 text-white rounded-xl hover:bg-blue-900">Zaloguj się</a>
-            <a href="signup" class="px-6 py-3 text-lg font-semibold bg-blue-400 text-white rounded-xl hover:bg-blue-900">Zarejestruj się</a>
+            <a href="{% url 'login' %}" class="px-6 py-3 text-lg font-semibold bg-blue-600 text-white rounded-xl hover:bg-blue-900">Zaloguj się</a>
+            <a href="{% url 'signup' %}" class="px-6 py-3 text-lg font-semibold bg-blue-400 text-white rounded-xl hover:bg-blue-900">Zarejestruj się</a>
 
             {% endif %}
         </div>
