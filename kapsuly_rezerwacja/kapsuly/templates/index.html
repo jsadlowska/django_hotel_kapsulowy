@@ -13,10 +13,11 @@
     <nav class="px-6 py-6 flex justify-between items-center border-b, border-gray-200">
         <a href="/" class="text-xl font-semibold">Hotel Kapsułowy "Na Chmurce"</a>
 
-        <div class="space-x-6">
-            <a href="{% url 'rezerwacje' %}" class="px-6 py-3 text-lg font-semibold bg-blue-800 text-white rounded-xl hover:bg-blue-900">Moje rezerwacje</a>
 
             {% if request.user.is_authenticated %}
+            <div class="space-x-6">
+            <a href="{% url 'rezerwacje' %}" class="px-6 py-3 text-lg font-semibold bg-blue-800 text-white rounded-xl hover:bg-blue-900">Moje rezerwacje</a>
+
 
             <div class="px-6 py-3 text-lg font-semibold bg-blue-400 text-white rounded-xl hover:bg-blue-900">
                 <form action="{% url 'logout' %}" method="post">

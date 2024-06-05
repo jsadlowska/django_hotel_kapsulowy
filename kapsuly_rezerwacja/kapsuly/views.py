@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from kapsuly.models import Kapsula, Rezerwacja
 from django.db import transaction
 from kapsuly.forms import KapsulaForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -51,18 +52,20 @@ class RezerwacjaListView(ListView):
     model = Rezerwacja
     template_name = "rezerwacja.html"
 
+@login_required
 @transaction.atomic
 def reserve(request, kapsula_id):
-    kapsula = Kapsula.objects.get(id=kapsula_id)
+    kapsula = get_object_or_404(Kapsula, id=kapsula_id)
     if not kapsula.is_reserved:
-        rez = Rezerwacja(kapsula=kapsula)
+        rez = Rezerwacja(kapsula=kapsula, user=request.user)
         rez.save()
     return redirect("index")
 
+@login_required
 @transaction.atomic
 def unreserve(request, rezerwacja_id):
     try:
-        rez = Rezerwacja.objects.get(id=rezerwacja_id)
+        rez = Rezerwacja.objects.get(id=rezerwacja_id, user=request.user)
     except Rezerwacja.DoesNotExist:
         pass
     else:

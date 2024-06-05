@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -28,12 +29,14 @@ class Kapsula(models.Model):
 
 class Rezerwacja(models.Model):
     kapsula = models.OneToOneField(Kapsula, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return f"{self.id}/{self.kapsula}"
 
     class Meta:
         verbose_name_plural = "Rezerwacje"
+        unique_together = ('kapsula', 'user')
 
 class Meta:
     unique_together = ('kapsula.id', 'rezerwacja.id')
