@@ -1,7 +1,7 @@
-## OPIS PROJEKTY
+## OPIS PROJEKTU
 
-Aplikacja rezerwacyjna hotelu kapsułowego stworzona jako projekt dyplomowy na kierunku Python Developer w WSB Merito Gdańsk. 
-Umożliwia użytkownikom rejestrację, logowanie oraz rezerwację kapsuł w hotelu kapsułowym.
+Aplikacja rezerwacyjna hotelu kapsułowego stworzona jako projekt dyplomowy studiów podyplomowych na kierunku Python Developer 
+w WSB Merito Gdańsk. Umożliwia użytkownikom rejestrację, logowanie oraz rezerwację kapsuł w hotelu kapsułowym.
 Autorem projektu jest Justyna Sadłowska, a promotorem Igor Klepuszewski.
 
 ## FUNKCJONALNOŚCI:
